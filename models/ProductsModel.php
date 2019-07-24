@@ -26,3 +26,22 @@ function getProductById($pdo, $productId)
     }
     return $rsProduct;
 }
+
+
+/**
+ * Get a list of products from the array of ids
+ * @param array $itemsIds an array of ids of products
+ * @return array of products
+ */
+function getProductsFromArray($pdo, $itemsIds)
+{
+
+    if (!count($itemsIds)) {
+        return;
+    }
+    $strIds = implode(', ', $itemsIds);
+    // d($strIds); 
+    $sql = "SELECT * FROM `products` WHERE `id` in ({$strIds})";
+
+    return createSmartyRsArray($pdo, $sql);
+}

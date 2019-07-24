@@ -11,6 +11,12 @@ $(document).ready(function() {
     removeFromCart(id);
   });
 
+  $(".itemCnt").keyup(function(event) {
+    const value = event.target.value;
+    const id = this.id.match(/[0-9]+/g);
+    calculateTotalPrice(id, value);
+  });
+
   function addToCart(itemId) {
     console.log("js - addToCart");
     $.ajax({
@@ -51,4 +57,9 @@ function removeFromCart(itemId) {
       console.log(xhr.status + " " + thrownError);
     }
   });
+}
+function calculateTotalPrice(id, value) {
+  const price = parseInt($("#itemPrice_" + id).attr("value"));
+  const totalPrice = price * value;
+  $("#itemRealPrice_" + id).html(totalPrice);
 }

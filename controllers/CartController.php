@@ -58,3 +58,23 @@ function removefromcartAction()
     }
     echo json_encode($resData);
 }
+
+function indexAction($smarty, $pdo)
+{
+    $itemsIds = $_SESSION['cart'] ?? array();
+
+    $rsProducts = null;
+
+
+
+    $rsCategories = getAllMainCatsWithChildren($pdo);
+    $rsProducts = getProductsFromArray($pdo, $itemsIds);
+
+    $smarty->assign('pageTitle', "Корзина");
+    $smarty->assign('rsProducts', $rsProducts);
+    $smarty->assign('rsCategories', $rsCategories);
+
+    loadTemplate($smarty, "header");
+    loadTemplate($smarty, "cart");
+    loadTemplate($smarty, "footer");
+}
