@@ -8,6 +8,9 @@ include_once '../models/ProductsModel.php';
 function indexAction($smarty, $pdo)
 {
     $catId = $_GET['id'] ?? null;
+    if ($catId == null) {
+        exit();
+    }
     $rsChildCats = null;
     $rsProducts = null;
 
