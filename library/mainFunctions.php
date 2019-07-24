@@ -3,6 +3,7 @@ function loadPage($smarty, $pdo, $controllerName, $actionName = 'test')
 {
     include_once PathPrefix . $controllerName . PathPostfix;
 
+
     $function = $actionName . "Action";
     $function($smarty, $pdo);
 }
