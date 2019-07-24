@@ -28,3 +28,15 @@ function getAllMainCatsWithChildren($pdo)
 
     return $smartyRs;
 }
+
+function getCatById($pdo, $catId)
+{
+    $catId = intval($catId);
+    // select particular category by its id
+    $sql = "SELECT * FROM `categories` WHERE `id`='{$catId}'";
+
+    foreach ($pdo->query($sql, PDO::FETCH_ASSOC) as $row) {
+        $rsResult = $row;
+    }
+    return $rsResult;
+}

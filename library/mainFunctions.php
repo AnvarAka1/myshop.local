@@ -29,6 +29,7 @@ function createSmartyRsArray($pdo, $sql)
     foreach ($pdo->query($sql, PDO::FETCH_ASSOC) as $row) {
         $smartyRs[] = $row;
     }
-    $smarty = isset($smartyRs) ? $smartyRs : false;
-    return $smarty;
+
+    $smartyArray = isset($smartyRs) ? $smartyRs : false;
+    return $smartyArray;
 }
