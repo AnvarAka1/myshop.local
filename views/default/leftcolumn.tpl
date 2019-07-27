@@ -12,6 +12,18 @@
                 {/foreach}
             </div>
             
+     <div id="registerBox">
+         <div class="menuCaption showHidden">Регистрация</div>
+         <div id="registerBoxHidden">
+             E-Mail:<br />
+             <input type="text" id="email" name="email" value="" /><br />
+             Пароль:<br />
+             <input type="password" id="pwd1" name="pwd1" value="" /><br />
+             Повторить пароль:<br />
+             <input type="password" id="pwd2" name="pwd2" value="" /><br />
+             <input id="regInput" type="button" value="Зарегистрироваться" />
+         </div>
+     </div>
             <div class="menuCaption">Корзина</div>
             <a href="/cart/" title="Перейти в корзину">В корзине</a>
             <span id="cartCntItems">

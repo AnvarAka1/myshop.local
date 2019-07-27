@@ -13,7 +13,7 @@ function getChildrenForCat($pdo, $catId)
 
 function getAllMainCatsWithChildren($pdo)
 {
-    $sql = 'SELECT * FROM categories WHERE parent_id=0';
+    $sql = 'SELECT * FROM categories WHERE parent_id = 0';
 
     $smartyRs = array();
     foreach ($pdo->query($sql, PDO::FETCH_ASSOC) as $row) {

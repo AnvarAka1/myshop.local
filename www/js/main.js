@@ -16,7 +16,9 @@ $(document).ready(function() {
     const id = this.id.match(/[0-9]+/g);
     calculateTotalPrice(id, value);
   });
-
+  $("#regInput").click(function() {
+    registerNewUser();
+  });
   function addToCart(itemId) {
     console.log("js - addToCart");
     $.ajax({
@@ -62,4 +64,35 @@ function calculateTotalPrice(id, value) {
   const price = parseInt($("#itemPrice_" + id).attr("value"));
   const totalPrice = price * value;
   $("#itemRealPrice_" + id).html(totalPrice);
+}
+
+function getData(objForm) {
+  let hData = {};
+  $("input, textarea, select", objForm).each(function() {
+    if (this.name && this.name != "") {
+      hData[this.name] = this.value;
+      console.log("hData[" + this.name + "] = " + hData[this.name]);
+    }
+  });
+  return hData;
+}
+
+function registerNewUser() {
+  const postData = getData("#registerBox");
+
+  $.ajax({
+    type: "POST",
+    async: true,
+    url: "/user/register/",
+    data: postData,
+    dataType: "json",
+    success: function(data) {
+      if (data["success"]) {
+        alert(data["message"]);
+        $("#registerBox").hide();
+      } else {
+        alert(data["message"]);
+      }
+    }
+  });
 }

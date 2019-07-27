@@ -13,8 +13,11 @@ function getLastProducts($pdo, $limit = null)
 function getProductsByCat($pdo, $catId)
 {
     $catId = intval($catId);
-    $sql = "SELECT * FROM `products` WHERE `category_id`={$catId}";
-    return createSmartyRsArray($pdo, $sql);
+    $sql = "SELECT * FROM `products` WHERE `category_id`=?";
+    $rs = $pdo->prepare($sql);
+    $rs->execute([$catId]);
+    $rs = $rs->fetchAll();
+    return $rs;
 }
 function getProductById($pdo, $productId)
 {
