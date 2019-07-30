@@ -5,7 +5,7 @@
 {else}
 
 <h3>Данные заказа</h3>
-<form>
+<form action="/cart/order/" method="POST">
     <table>
         <tr>
             <td>№</td>
@@ -40,7 +40,7 @@
 
     </table>
 
-    <button type="submit">Оформить заказ</button>
+    <input type="submit" value="Оформить заказ">
 
 </form>
 {/if}

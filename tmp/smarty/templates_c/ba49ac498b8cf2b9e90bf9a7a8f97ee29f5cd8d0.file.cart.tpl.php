@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2019-07-24 23:32:06
+<?php /* Smarty version Smarty-3.1.6, created on 2019-07-30 21:16:15
          compiled from "../views/default\cart.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16309716375d38bc822762a6-73986641%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ba49ac498b8cf2b9e90bf9a7a8f97ee29f5cd8d0' => 
     array (
       0 => '../views/default\\cart.tpl',
-      1 => 1564003921,
+      1 => 1564514157,
       2 => 'file',
     ),
   ),
@@ -31,7 +31,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php }else{ ?>
 
 <h3>Данные заказа</h3>
-<form>
+<form action="/cart/order/" method="POST">
     <table>
         <tr>
             <td>№</td>
@@ -65,7 +65,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
             </td>
             <td>
                 <span id="itemPrice_<?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-" valsue=<?php echo $_smarty_tpl->tpl_vars['item']->value['price'];?>
+" value=<?php echo $_smarty_tpl->tpl_vars['item']->value['price'];?>
 ><?php echo $_smarty_tpl->tpl_vars['item']->value['price'];?>
 </span>
             </td>
@@ -85,7 +85,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 
     </table>
 
-    <button type="submit">Оформить заказ</button>
+    <input type="submit" value="Оформить заказ">
 
 </form>
 <?php }?><?php }} ?>

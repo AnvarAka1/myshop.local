@@ -18,8 +18,12 @@ include_once '../library/mainFunctions.php';
 $controllerName = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'index';
 $actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-
+if (isset($_SESSION['user'])) {
+    $smarty->assign('arUser', $_SESSION['user']);
+}
 // initialize the variable with number of items in the cart
 $smarty->assign('cartCntItems', count($_SESSION['cart']));
+
+
 
 loadPage($smarty, $pdo, $controllerName, $actionName);

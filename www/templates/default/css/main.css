@@ -43,3 +43,7 @@ body {
 .cartBox {
     padding: 5px 0;
 }
+
+#registerBoxHidden {
+    display: none;
+}

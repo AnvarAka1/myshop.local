@@ -19,6 +19,51 @@ $(document).ready(function() {
   $("#regInput").click(function() {
     registerNewUser();
   });
+
+  $("#userBox #logout").click(function() {
+    $("#userBox").hide();
+
+    $("#userBox #userLink").attr("href", "");
+    $("#userBox #userLink").html("");
+
+    $("#registerBox").show();
+  });
+  $("#loginBox #loginInput").click(function() {
+    login();
+  });
+
+  $("#regToggle").click(function(event) {
+    event.preventDefault();
+
+    const regBox = $("#registerBoxHidden");
+    if (regBox.is(":hidden")) {
+      regBox.show();
+    } else {
+      regBox.hide();
+    }
+  });
+
+  $("#saveChangesButton").click(function() {
+    const userInfoTableData = getData("#userInfoTable");
+    console.log(userInfoTableData);
+
+    $.ajax({
+      type: "POST",
+      async: true,
+      url: "/user/update/",
+      dataType: "json",
+      data: userInfoTableData,
+      success: function(data) {
+        if (data["status"]) {
+          $("userLink").html(data["userName"]);
+          alert(data["message"]);
+        } else {
+          alert(data["message"]);
+        }
+      }
+    });
+  });
+
   function addToCart(itemId) {
     console.log("js - addToCart");
     $.ajax({
@@ -79,7 +124,7 @@ function getData(objForm) {
 
 function registerNewUser() {
   const postData = getData("#registerBox");
-
+  console.log(postData);
   $.ajax({
     type: "POST",
     async: true,
@@ -90,6 +135,38 @@ function registerNewUser() {
       if (data["success"]) {
         alert(data["message"]);
         $("#registerBox").hide();
+
+        $("#userBox #userLink").attr("href", "/user/");
+        $("#userBox #userLink").html(data["userName"]);
+
+        $("#userBox").show();
+      } else {
+        alert(data["message"]);
+      }
+    }
+  });
+}
+
+function login() {
+  const email = $("#loginBox #loginEmail").val();
+  const pwd = $("#loginBox #loginPwd").val();
+  const postData = "email=" + email + "&pwd=" + pwd;
+  console.log(postData);
+  $.ajax({
+    type: "POST",
+    data: postData,
+    async: true,
+    url: "/user/login/",
+    dataType: "json",
+    success: function(data) {
+      if (data["success"]) {
+        $("#registerBox").hide();
+        $("#loginBox").hide();
+        $("#userBox #userLink").attr("href", "/user/");
+        console.log("dn ", data["displayName"]);
+        $("#userBox #userLink").html(data["displayName"]);
+
+        $("#userBox").show();
       } else {
         alert(data["message"]);
       }

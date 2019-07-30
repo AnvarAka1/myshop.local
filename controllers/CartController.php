@@ -78,3 +78,11 @@ function indexAction($smarty, $pdo)
     loadTemplate($smarty, "cart");
     loadTemplate($smarty, "footer");
 }
+function orderAction($smarty, $pdo)
+{
+    $itemsIds = $_SESSION['cart'] ?? null;
+    if (!$itemsIds) {
+        redirect("/");
+        return;
+    }
+}
